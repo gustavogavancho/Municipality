@@ -1,4 +1,6 @@
-﻿namespace Municipality.Api.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace Municipality.Api.Entities;
 
 public class Municipality
 {

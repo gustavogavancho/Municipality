@@ -3,5 +3,5 @@ using MunicipalityItem = Municipality.Api.Entities.Municipality;
 
 public interface IMunicipalityRepository
 {
-    ValueTask<MunicipalityItem> GetMunicipality(int id);
+    ValueTask<MunicipalityItem> GetMunicipalityById(int id);
 }

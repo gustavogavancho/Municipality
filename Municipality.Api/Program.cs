@@ -1,9 +1,12 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Municipality.Api.Data;
+using Municipality.Api.Dtos;
+using Municipality.Api.Profiles;
 using Municipality.Api.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddDbContext<MunicipalityContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("MunicipalityDB")));
 builder.Services.AddScoped<IMunicipalityRepository, MunicipalityRepository>();
 
@@ -26,16 +29,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/{id:int}", async (int id, IMunicipalityRepository municipalityRepository) =>
+app.MapGet("/{id:int}", async (int id, IMunicipalityRepository municipalityRepository, IMapper mapper) =>
 {
-    var municipality = await municipalityRepository.GetByIdAsync(id);
-    if (municipality == null)
-    {
-        return Results.NotFound($"Municipio con id {id} no encontrado.");
-    }
-    return Results.Ok(municipality);
+    var municipality = await municipalityRepository.GetMunicipalityById(id);
+
+    if (municipality == null) return Results.NotFound($"Municipality with id {id} was not found.");
+
+    var municipalityResponse = mapper.Map<MunicipalityDto>(municipality);
+
+    return Results.Ok(municipalityResponse);
 })
-.WithName("GetMunicipioById")
+.WithName("GetMunicipalityById")
 .WithOpenApi();
 
 app.Run();

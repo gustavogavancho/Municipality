@@ -13,7 +13,7 @@ public class MunicipalityRepository : IMunicipalityRepository
         this.context = context;
     }
 
-    public async ValueTask<MunicpalityItem> GetMunicipality(int id)
+    public async ValueTask<MunicpalityItem> GetMunicipalityById(int id)
     {
         var municipality = await context.Municipalities.FirstOrDefaultAsync(x => x.Id == id);
 
