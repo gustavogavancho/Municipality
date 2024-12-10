@@ -29,11 +29,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/{id:int}", async (int id, IMunicipalityRepository municipalityRepository, IMapper mapper) =>
+app.MapGet("/{municipalityId:int}", async (int municipalityId, IMunicipalityRepository municipalityRepository, IMapper mapper) =>
 {
-    var municipality = await municipalityRepository.GetMunicipalityById(id);
+    var municipality = await municipalityRepository.GetMunicipalityById(municipalityId);
 
-    if (municipality == null) return Results.NotFound($"Municipality with id {id} was not found.");
+    if (municipality == null) return Results.NotFound($"Municipality with id {municipalityId} was not found.");
 
     var municipalityResponse = mapper.Map<MunicipalityDto>(municipality);
 

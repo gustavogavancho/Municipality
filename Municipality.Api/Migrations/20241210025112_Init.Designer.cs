@@ -10,7 +10,7 @@ using Municipality.Api.Data;
 namespace Municipality.Api.Migrations
 {
     [DbContext(typeof(MunicipalityContext))]
-    [Migration("20241209013206_Init")]
+    [Migration("20241210025112_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -25,16 +25,13 @@ namespace Municipality.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Mayor")
+                    b.Property<string>("Demonym")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Party")
+                    b.Property<string>("Website")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Population")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -44,9 +41,8 @@ namespace Municipality.Api.Migrations
                         new
                         {
                             Id = 45014,
-                            Mayor = "Rodrigo Moreno Contreras",
-                            Party = "Partido Socialista Obrero Español (PSOE)",
-                            Population = 5209
+                            Demonym = "Añoverano/Añoverana",
+                            Website = "http://anoverdetajo.es/"
                         });
                 });
 #pragma warning restore 612, 618

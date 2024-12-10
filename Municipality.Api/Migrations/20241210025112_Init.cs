@@ -16,9 +16,8 @@ namespace Municipality.Api.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Mayor = table.Column<string>(type: "TEXT", nullable: false),
-                    Party = table.Column<string>(type: "TEXT", nullable: false),
-                    Population = table.Column<int>(type: "INTEGER", nullable: false)
+                    Demonym = table.Column<string>(type: "TEXT", nullable: false),
+                    Website = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,8 +26,8 @@ namespace Municipality.Api.Migrations
 
             migrationBuilder.InsertData(
                 table: "Municipalities",
-                columns: new[] { "Id", "Mayor", "Party", "Population" },
-                values: new object[] { 45014, "Rodrigo Moreno Contreras", "Partido Socialista Obrero Español (PSOE)", 5209 });
+                columns: new[] { "Id", "Demonym", "Website" },
+                values: new object[] { 45014, "Añoverano/Añoverana", "http://anoverdetajo.es/" });
         }
 
         /// <inheritdoc />

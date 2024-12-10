@@ -17,9 +17,8 @@ public class MunicipalityContext : DbContext
         modelBuilder.Entity<MuncipalityItem>().HasData(new MuncipalityItem
         {
             Id = 45014,
-            Mayor = "Rodrigo Moreno Contreras",
-            Party = "Partido Socialista Obrero Español (PSOE)",
-            Population = 5209,
+            Demonym = "Añoverano/Añoverana",
+            Website = "http://anoverdetajo.es/",
         });
     }
 }
